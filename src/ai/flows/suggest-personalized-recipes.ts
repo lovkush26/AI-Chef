@@ -39,6 +39,7 @@ const RecipeSchema = z.object({
   cookingTime: z.number().describe('The total cooking time in minutes.'),
   difficulty: z.enum(['Easy', 'Medium', 'Hard']).describe('The difficulty level of the recipe.'),
   rating: z.number().min(1).max(5).optional().describe('User rating for the recipe, from 1 to 5.'),
+  imageUrl: z.string().url().describe('A URL for a high-quality image of the recipe.'),
 });
 
 const SuggestPersonalizedRecipesOutputSchema = z.object({
@@ -65,6 +66,7 @@ Here are the user's favorite recipes and their ratings (out of 5):
 {{/each}}
 
 Please suggest some new and interesting recipes that align with these tastes. For each new recipe, provide all the fields specified in the output schema.
+It is mandatory to provide a relevant, high-quality photo URL for the 'imageUrl' field for every recipe from a stock photo website like Unsplash. The image must accurately represent the recipe.
 `,
 });
 

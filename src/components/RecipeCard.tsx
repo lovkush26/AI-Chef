@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { Heart, Eye, Clock, Zap } from 'lucide-react';
 import type { Recipe } from '@/types';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -27,19 +26,10 @@ export default function RecipeCard({ recipe, onSelectRecipe }: RecipeCardProps) 
     }
   };
 
-  const recipeImageQuery = recipe.name.toLowerCase().replace(/\s+/g, ' ');
-
   return (
     <Card className="flex h-full flex-col overflow-hidden transition-shadow duration-300 hover:shadow-xl">
-      <CardHeader className="relative p-0">
-        <Image
-          src={`https://placehold.co/600x400/png?text=${encodeURIComponent(recipe.name)}&font=roboto`}
-          alt={recipe.name}
-          width={600}
-          height={400}
-          className="aspect-[3/2] w-full object-cover"
-          data-ai-hint={recipeImageQuery}
-        />
+      <CardHeader className="relative p-4">
+        <CardTitle className="font-headline text-lg">{recipe.name}</CardTitle>
         <Button
           size="icon"
           className={cn(
@@ -52,8 +42,7 @@ export default function RecipeCard({ recipe, onSelectRecipe }: RecipeCardProps) 
           <span className="sr-only">Favorite</span>
         </Button>
       </CardHeader>
-      <CardContent className="flex-grow p-4">
-        <CardTitle className="font-headline text-lg mb-2">{recipe.name}</CardTitle>
+      <CardContent className="flex-grow p-4 pt-0">
         <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
             <Badge variant="outline" className="flex items-center gap-1">
                 <Clock className="h-3 w-3" />
